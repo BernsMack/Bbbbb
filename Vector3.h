@@ -1,0 +1,69 @@
+//------------------------------------------------------------------------------
+//                               Vector3
+//------------------------------------------------------------------------------
+/**
+ *  class Vector3 is 3-element double vector
+ */
+//------------------------------------------------------------------------------
+#ifndef VECTOR3_H
+#define VECTOR3_H
+
+#include <iostream>
+#include <math.h>
+//------------------------------------------------------------------------------
+class Vector3
+{
+   public:
+    const static unsigned int n = 3; //Size of Vector3
+      // ----- constructors: begin
+      Vector3(); //Set Vector3 as the zero-tree-dimension-vector
+      Vector3(double arg);
+      Vector3(const double arg[3]);
+      Vector3(const Vector3 &other);
+      Vector3(double arg1, double arg2, double arg3);
+      // ----- constructors: end
+      virtual ~Vector3();//+
+      inline double &operator[](unsigned int i);//
+      inline double operator[](unsigned int i) const;//
+      double at(int i) const;//
+      
+      void set(const Vector3 &other);//+
+      void set(double arg1, double arg2, double arg3);//+
+      void set(const double arg[3]);//+
+      void setZero();
+	  void show();
+      
+      Vector3 &operator=(const Vector3 &other); //Copy constructor
+      Vector3 &operator+=(const Vector3 &other);
+      Vector3 &operator-=(const Vector3 &other);
+      Vector3 &operator*=(const double number);
+      Vector3 &operator/=(const double number);
+      friend bool operator==(const Vector3 &lhs, const Vector3 &rhs);
+      friend Vector3 operator+(const Vector3 &our, const Vector3 &other);
+      friend Vector3 operator-(const Vector3 &our, const Vector3 &other);
+      friend Vector3 operator*(const Vector3 &our, double number);
+      friend Vector3 operator*(const double number, const Vector3 &our);
+      friend Vector3 operator/(const Vector3 &our, const double number);
+      bool isVectorZero() const;
+      double getNorma() const;
+      
+      void normalize();
+      Vector3 getNormalized()const;
+      
+
+      double getScalarProduct(const Vector3 &other) const;
+
+      friend Vector3 getVectorProduct(const Vector3 &our, const Vector3 &other);
+
+      Vector3 operator-()const;
+      
+      friend std::ostream &operator<<(std::ostream &stream, const Vector3 &V);
+      const double* getElements(); 
+   private:
+        double elem[n];
+
+}; // class Vector3
+
+bool operator!=(const Vector3 &our, const Vector3 &other);
+
+#endif // VECTOR3_H
